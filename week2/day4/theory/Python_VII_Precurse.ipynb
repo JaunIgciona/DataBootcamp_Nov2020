@@ -8020,6 +8020,197 @@
    "metadata": {}
   },
   {
+   "cell_type": "code",
+   "execution_count": 6,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "error",
+     "ename": "TypeError",
+     "evalue": "unsupported operand type(s) for +: 'int' and 'str'",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[1;32m<ipython-input-6-3a01d862c2de>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[0;32m      3\u001b[0m     \u001b[1;32mreturn\u001b[0m \u001b[0mresultado\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 5\u001b[1;33m \u001b[0ms\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0msuma\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0ma\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;36m2\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      6\u001b[0m \u001b[0ms\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;32m<ipython-input-6-3a01d862c2de>\u001b[0m in \u001b[0;36msuma\u001b[1;34m(a, b)\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[1;32mdef\u001b[0m \u001b[0msuma\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0ma\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mb\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;34m\"3\"\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 2\u001b[1;33m     \u001b[0mresultado\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0ma\u001b[0m \u001b[1;33m+\u001b[0m \u001b[0mb\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      3\u001b[0m     \u001b[1;32mreturn\u001b[0m \u001b[0mresultado\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      5\u001b[0m \u001b[0ms\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0msuma\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0ma\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;36m2\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;31mTypeError\u001b[0m: unsupported operand type(s) for +: 'int' and 'str'"
+     ]
+    }
+   ],
+   "source": [
+    "def suma(a, b=\"3\"):\n",
+    "    resultado = a + b\n",
+    "    return resultado\n",
+    "\n",
+    "s = suma(a=2)\n",
+    "s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "Ha ocurrido un error al sumar\n"
+     ]
+    },
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "5"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 7
+    }
+   ],
+   "source": [
+    "def suma(a, b=\"3\"):\n",
+    "    try:\n",
+    "        resultado = a + b\n",
+    "    except:\n",
+    "        print(\"Ha ocurrido un error al sumar\")\n",
+    "        a = int(a)\n",
+    "        b = int(b)\n",
+    "        resultado = a + b\n",
+    "    return resultado\n",
+    "\n",
+    "s = suma(a=2)\n",
+    "s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "Ha ocurrido un error al sumar. Los argumentos 'a' y 'b' deben ser de tipo Entero. El código del error es: '0x86080808'\n"
+     ]
+    },
+    {
+     "output_type": "execute_result",
+     "data": {
+      "text/plain": [
+       "-1"
+      ]
+     },
+     "metadata": {},
+     "execution_count": 14
+    }
+   ],
+   "source": [
+    "def suma_positiva(a, b):\n",
+    "    \"\"\" Suma dos valores numéricos de tipo entero. Si algún parámetro incorrecto, la función devolverá (0x086080808)\"\"\"\n",
+    "    resultado = -1\n",
+    "    try:\n",
+    "        resultado = a + b\n",
+    "    except:\n",
+    "        print(\"Ha ocurrido un error al sumar. Los argumentos 'a' y 'b' deben ser de tipo Entero. El código del error es: '0x86080808'\")\n",
+    "    return resultado\n",
+    "\n",
+    "s = suma_positiva(a=2, b=\"4\")\n",
+    "s"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 19,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "error",
+     "ename": "TypeError",
+     "evalue": "unsupported operand type(s) for +: 'int' and 'str'",
+     "traceback": [
+      "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
+      "\u001b[1;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+      "\u001b[1;32m<ipython-input-19-c64faeb04cb2>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[0;32m      2\u001b[0m \u001b[0mb\u001b[0m \u001b[1;33m=\u001b[0m \u001b[1;34m\"g\"\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      3\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 4\u001b[1;33m \u001b[0mresultado\u001b[0m \u001b[1;33m=\u001b[0m \u001b[0ma\u001b[0m \u001b[1;33m+\u001b[0m \u001b[0mb\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      5\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      6\u001b[0m \u001b[0mprint\u001b[0m\u001b[1;33m(\u001b[0m\u001b[1;34m\"hola\"\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;31mTypeError\u001b[0m: unsupported operand type(s) for +: 'int' and 'str'"
+     ]
+    }
+   ],
+   "source": [
+    "a = 2\n",
+    "b = \"g\"\n",
+    "\n",
+    "resultado = a + b\n",
+    "\n",
+    "print(\"hola\")\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 18,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "Ha ocurrido un error: unsupported operand type(s) for +: 'int' and 'str'\nhola\n"
+     ]
+    }
+   ],
+   "source": [
+    "a = 2\n",
+    "b = \"g\"\n",
+    "try:\n",
+    "    resultado = a + b\n",
+    "except Exception as error:\n",
+    "    print(\"Ha ocurrido un error:\", error)\n",
+    "    resultado = -1\n",
+    "\n",
+    "print(\"hola\")\n",
+    "    \n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 28,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "invalid literal for int() with base 10: 'a'\nHa ocurrido un error, solo se admiten números\n"
+     ]
+    }
+   ],
+   "source": [
+    "def minicalculadora(a, b, operador, DEBUG=0):\n",
+    "    try:\n",
+    "        a = int(a)\n",
+    "        b = int(b)\n",
+    "        if operador == \"+\":\n",
+    "            return a + b\n",
+    "        elif operador == \"/\":\n",
+    "            return a / b\n",
+    "        else:\n",
+    "            print(\"Esta calculadora solo permite suma y división\")\n",
+    "    except Exception as error:\n",
+    "        if DEBUG == 1:\n",
+    "            print(error)\n",
+    "        print(\"Ha ocurrido un error, solo se admiten números\")\n",
+    "\n",
+    "s = input(\"Escribe un operador\")\n",
+    "a = input(\"Escribe un número\")\n",
+    "b = input(\"Escribe otro número\")\n",
+    "\n",
+    "minicalculadora(a=a, b=b, operador=s, DEBUG=1)"
+   ]
+  },
+  {
    "source": [
     "### Assert"
    ],
@@ -8028,23 +8219,49 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 33,
+   "execution_count": 29,
    "metadata": {},
    "outputs": [
     {
      "output_type": "error",
      "ename": "AssertionError",
-     "evalue": "mensaje",
+     "evalue": "No has introducido la contraseña correcta",
      "traceback": [
       "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m",
       "\u001b[1;31mAssertionError\u001b[0m                            Traceback (most recent call last)",
-      "\u001b[1;32m<ipython-input-33-37183ddd6bc3>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[1;32massert\u001b[0m \u001b[1;33m(\u001b[0m\u001b[1;36m1\u001b[0m\u001b[1;33m==\u001b[0m\u001b[1;36m2\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m\"mensaje\"\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
-      "\u001b[1;31mAssertionError\u001b[0m: mensaje"
+      "\u001b[1;32m<ipython-input-29-41c415592a19>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m\u001b[0m\n\u001b[0;32m      3\u001b[0m     \u001b[1;32mreturn\u001b[0m \u001b[1;36m5813851785875187517\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 5\u001b[1;33m \u001b[0mmostrar_dinero_banco\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mpassword\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;36m41241\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+      "\u001b[1;32m<ipython-input-29-41c415592a19>\u001b[0m in \u001b[0;36mmostrar_dinero_banco\u001b[1;34m(password)\u001b[0m\n\u001b[0;32m      1\u001b[0m \u001b[1;32mdef\u001b[0m \u001b[0mmostrar_dinero_banco\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mpassword\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m:\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[1;32m----> 2\u001b[1;33m     \u001b[1;32massert\u001b[0m \u001b[1;33m(\u001b[0m\u001b[0mpassword\u001b[0m\u001b[1;33m==\u001b[0m\u001b[1;36m385187\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;34m\"No has introducido la contraseña correcta\"\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m\u001b[0;32m      3\u001b[0m     \u001b[1;32mreturn\u001b[0m \u001b[1;36m5813851785875187517\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      4\u001b[0m \u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0;32m      5\u001b[0m \u001b[0mmostrar_dinero_banco\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mpassword\u001b[0m\u001b[1;33m=\u001b[0m\u001b[1;36m41241\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n",
+      "\u001b[1;31mAssertionError\u001b[0m: No has introducido la contraseña correcta"
      ]
     }
    ],
    "source": [
-    "assert (1==2), \"mensaje\""
+    "def mostrar_dinero_banco(password):\n",
+    "    assert (password==385187), \"No has introducido la contraseña correcta\"\n",
+    "    return 5813851785875187517\n",
+    "\n",
+    "mostrar_dinero_banco(password=41241)\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 33,
+   "metadata": {},
+   "outputs": [
+    {
+     "output_type": "stream",
+     "name": "stdout",
+     "text": [
+      "error: Error, 1 no es 2\nHa ocurrido un error\n"
+     ]
+    }
+   ],
+   "source": [
+    "try:\n",
+    "    assert (1==2), \"Error, 1 no es 2\"\n",
+    "except Exception as error:\n",
+    "    print(\"error:\", error) \n",
+    "    print(\"Ha ocurrido un error\")"
    ]
   },
   {
