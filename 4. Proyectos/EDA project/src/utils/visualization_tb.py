@@ -1,19 +1,20 @@
 import pandas as pd 
 import numpy as np 
 import datetime as dt
+import os
 
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-def label_fun(title=None, xlab=None, ylab=None):
+def label_fig(title=None, xlab=None, ylab=None, tit_size=15):
     if title:
-        plt.title(title, fontsize=20)
+        plt.title(title, fontsize=tit_size)
     if xlab:
         plt.xlabel(xlab)
     if ylab:
         plt.ylabel(ylab)
 
-def column_pie(dataset, *column, n_to_show):
+def column_pie(dataset, column=None, n_to_show=6):
 
     if column:
         ordered_by_col = dataset.groupby(f'{column}')[f'{column}'].count().sort_values(ascending=False)
@@ -31,14 +32,15 @@ def column_pie(dataset, *column, n_to_show):
 
     plt.pie(count_list, labels=labels, autopct='%1.0f%%')
 
-def col_time_series(dataset, column, time_period, agg='mean'):
+def col_time_series(dataset, column, time_period, agg='mean', colour=8):
     sns.set()
+    col= sns.color_palette()
     movies_Y = dataset.groupby(dataset.release_date.dt.to_period(f'{time_period}')).agg(f'{agg}')
     x_ax = movies_Y[column].index.to_timestamp()
     y_ax = movies_Y[column].values
 
     plt.figure(figsize=(10,6))
-    plt.plot(x_ax, y_ax)
+    plt.plot(x_ax, y_ax, color=col[colour])
 
 def count_bar(dataset, ascen=True):
     sns.set()
@@ -49,24 +51,49 @@ def count_bar(dataset, ascen=True):
         label = df_count.index[i]
         plt.barh(label, x)
 
-def without_0_hist(dataset, column, bin):
+def without_0_hist(dataset, column, bin=10, without_0s = True, colour=0):
     sns.set()
-    df_without_0 = dataset[dataset[f'{column}'] > 0]
+    col = sns.color_palette()
+    if without_0s:
+        df = dataset[dataset[f'{column}'] > 0]
+    else:
+        df = dataset
 
-    plt.figure(figsize=(10,6))
-    plt.hist(df_without_0[f'{column}'].values, bins=bin)
+    plt.figure(figsize=(8,5))
+    plt.hist(df[f'{column}'].values, bins=bin, color=col[colour])
 
-def log_hist(dataset, column, bin, without_0s=False):
+def log_hist(dataset, column, bin=10, without_0s=False, colour=0):
     sns.set()
+    col = sns.color_palette()
     if without_0s:
         df = dataset[dataset[f'{column}'] > 0]
     else:
         df = dataset
     
-    hist, bins = np.histogram(df[f'{column}'], bins=18)
+    hist, bins = np.histogram(df[f'{column}'], bins=bin)
     logbins = np.logspace(np.log10(bins[0]),np.log10(bins[-1]),len(bins))
     
-    plt.figure(figsize=(10,6))
-    plt.hist(df[f'{column}'], bins=logbins)
+    plt.figure(figsize=(8,5))
+    plt.hist(df[f'{column}'], bins=logbins, color=col[colour])
     plt.xscale('log')
 
+def dense_plot(serie):
+    plt.figure(figsize=(8,5))
+    sns.set(palette='husl')
+    sns.kdeplot(serie, fill=True)
+
+
+def save_repo(name):
+    root_project = os.path.dirname(os.getcwd())
+    plt.savefig(root_project + f'//reports//{name}.jpg')
+
+def two_var_ts(dataset, col1, col2, time_period='Y', agg='mean', colour=(0,2)):
+    sns.set()
+    col= sns.color_palette()
+    df_year = dataset.groupby(dataset.release_date.dt.to_period(time_period)).agg('mean')
+    dates = df_year.index.to_timestamp()
+
+    plt.figure(figsize=(10,6))
+    #ax = plt.axes()
+    plt.plot(dates, df_year[f'{col1}'].values, color=col[colour[0]])
+    plt.plot(dates, df_year[f'{col2}'].values, color=col[colour[1]])
