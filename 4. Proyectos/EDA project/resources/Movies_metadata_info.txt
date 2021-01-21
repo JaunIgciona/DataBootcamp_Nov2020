@@ -1,3 +1,0 @@
-This dataset has been extracted from the Kaggle database through this web location:
-
-https://www.kaggle.com/rounakbanik/the-movies-dataset?select=movies_metadata.csv

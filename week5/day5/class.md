@@ -16,7 +16,7 @@
 5. pandas exercises
 6. individual project
 
-#### Remember: All this is for your future job!
+#### Remember: All this is for your future job! the more you try now, the more reward you will have in the future.
 
 *NOTE: Under the cells in pandas exercises, there is the solution. Remember that if you run the cells you will lose the solution. For that, try to create new cells to check your solution.*
 
